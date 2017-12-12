@@ -15,7 +15,6 @@
 		304A03CB1FDFAFE600697078 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CA1FDFAFE600697078 /* ViewController.m */; };
 		304A03CF1FDFB12B00697078 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CD1FDFB12A00697078 /* ChatViewController.swift */; };
 		304A03D01FDFB12B00697078 /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CE1FDFB12B00697078 /* SwiftViewController.swift */; };
-		304A03D21FDFB1AC00697078 /* MQTTSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A03D11FDFB1AC00697078 /* MQTTSwift.swift */; };
 		55B54A714922AF8C891E8E66 /* Pods_XLsn0wMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AF042C5015C17AF5D7DC13 /* Pods_XLsn0wMQTT.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +32,6 @@
 		304A03CC1FDFB12A00697078 /* XLsn0wMQTT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XLsn0wMQTT-Bridging-Header.h"; sourceTree = "<group>"; };
 		304A03CD1FDFB12A00697078 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		304A03CE1FDFB12B00697078 /* SwiftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftViewController.swift; sourceTree = "<group>"; };
-		304A03D11FDFB1AC00697078 /* MQTTSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSwift.swift; sourceTree = "<group>"; };
 		304A03D31FDFB40900697078 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		83B005F7C3DCA528B881CA10 /* Pods-XLsn0wMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLsn0wMQTT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XLsn0wMQTT/Pods-XLsn0wMQTT.debug.xcconfig"; sourceTree = "<group>"; };
 		85831FEBFDB5D6087E832EBD /* Pods-XLsn0wMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLsn0wMQTT.release.xcconfig"; path = "Pods/Target Support Files/Pods-XLsn0wMQTT/Pods-XLsn0wMQTT.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 				304A03CA1FDFAFE600697078 /* ViewController.m */,
 				304A03CD1FDFB12A00697078 /* ChatViewController.swift */,
 				304A03CE1FDFB12B00697078 /* SwiftViewController.swift */,
-				304A03D11FDFB1AC00697078 /* MQTTSwift.swift */,
 				30367F771FDFAEBF0007678F /* Main.storyboard */,
 				30367F7A1FDFAEBF0007678F /* Assets.xcassets */,
 				30367F7C1FDFAEBF0007678F /* LaunchScreen.storyboard */,
@@ -246,7 +243,6 @@
 				304A03D01FDFB12B00697078 /* SwiftViewController.swift in Sources */,
 				304A03CB1FDFAFE600697078 /* ViewController.m in Sources */,
 				30367F811FDFAEBF0007678F /* main.m in Sources */,
-				304A03D21FDFB1AC00697078 /* MQTTSwift.swift in Sources */,
 				304A03CF1FDFB12B00697078 /* ChatViewController.swift in Sources */,
 				30367F731FDFAEBF0007678F /* AppDelegate.m in Sources */,
 			);

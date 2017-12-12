@@ -14,9 +14,6 @@
 
 #import "MQTTSessionManager.h"
 
-#import <MQTTSwift.swift>
-
-
 #import "MQTTCoreDataPersistence.h"
 #import "MQTTLog.h"
 #import "ReconnectTimer.h"
