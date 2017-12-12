@@ -1,0 +1,25 @@
+//
+//  PrefixHeader.pch
+//  XLsn0wMQTT
+//
+//  Created by golong on 2017/12/12.
+//  Copyright © 2017年 XLsn0w. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "MQTTSessionManager.h"
+
+#import <MQTTSwift.swift>
+
+
+#import "MQTTCoreDataPersistence.h"
+#import "MQTTLog.h"
+#import "ReconnectTimer.h"
+#import "ForegroundReconnection.h"
+
+#endif /* PrefixHeader_pch */

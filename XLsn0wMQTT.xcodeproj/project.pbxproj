@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		30367F731FDFAEBF0007678F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30367F721FDFAEBF0007678F /* AppDelegate.m */; };
-		30367F761FDFAEBF0007678F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30367F751FDFAEBF0007678F /* ViewController.m */; };
 		30367F791FDFAEBF0007678F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30367F771FDFAEBF0007678F /* Main.storyboard */; };
 		30367F7B1FDFAEBF0007678F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30367F7A1FDFAEBF0007678F /* Assets.xcassets */; };
 		30367F7E1FDFAEBF0007678F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30367F7C1FDFAEBF0007678F /* LaunchScreen.storyboard */; };
 		30367F811FDFAEBF0007678F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30367F801FDFAEBF0007678F /* main.m */; };
+		304A03CB1FDFAFE600697078 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CA1FDFAFE600697078 /* ViewController.m */; };
+		304A03CF1FDFB12B00697078 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CD1FDFB12A00697078 /* ChatViewController.swift */; };
+		304A03D01FDFB12B00697078 /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CE1FDFB12B00697078 /* SwiftViewController.swift */; };
+		304A03D21FDFB1AC00697078 /* MQTTSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A03D11FDFB1AC00697078 /* MQTTSwift.swift */; };
 		55B54A714922AF8C891E8E66 /* Pods_XLsn0wMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AF042C5015C17AF5D7DC13 /* Pods_XLsn0wMQTT.framework */; };
 /* End PBXBuildFile section */
 
@@ -20,13 +23,18 @@
 		30367F6E1FDFAEBF0007678F /* XLsn0wMQTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLsn0wMQTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30367F711FDFAEBF0007678F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		30367F721FDFAEBF0007678F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		30367F741FDFAEBF0007678F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		30367F751FDFAEBF0007678F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		30367F781FDFAEBF0007678F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30367F7A1FDFAEBF0007678F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30367F7D1FDFAEBF0007678F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30367F7F1FDFAEBF0007678F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30367F801FDFAEBF0007678F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		304A03C91FDFAFE600697078 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		304A03CA1FDFAFE600697078 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		304A03CC1FDFB12A00697078 /* XLsn0wMQTT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XLsn0wMQTT-Bridging-Header.h"; sourceTree = "<group>"; };
+		304A03CD1FDFB12A00697078 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		304A03CE1FDFB12B00697078 /* SwiftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftViewController.swift; sourceTree = "<group>"; };
+		304A03D11FDFB1AC00697078 /* MQTTSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSwift.swift; sourceTree = "<group>"; };
+		304A03D31FDFB40900697078 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		83B005F7C3DCA528B881CA10 /* Pods-XLsn0wMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLsn0wMQTT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XLsn0wMQTT/Pods-XLsn0wMQTT.debug.xcconfig"; sourceTree = "<group>"; };
 		85831FEBFDB5D6087E832EBD /* Pods-XLsn0wMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLsn0wMQTT.release.xcconfig"; path = "Pods/Target Support Files/Pods-XLsn0wMQTT/Pods-XLsn0wMQTT.release.xcconfig"; sourceTree = "<group>"; };
 		D3AF042C5015C17AF5D7DC13 /* Pods_XLsn0wMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XLsn0wMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,13 +75,18 @@
 			children = (
 				30367F711FDFAEBF0007678F /* AppDelegate.h */,
 				30367F721FDFAEBF0007678F /* AppDelegate.m */,
-				30367F741FDFAEBF0007678F /* ViewController.h */,
-				30367F751FDFAEBF0007678F /* ViewController.m */,
+				304A03C91FDFAFE600697078 /* ViewController.h */,
+				304A03CA1FDFAFE600697078 /* ViewController.m */,
+				304A03CD1FDFB12A00697078 /* ChatViewController.swift */,
+				304A03CE1FDFB12B00697078 /* SwiftViewController.swift */,
+				304A03D11FDFB1AC00697078 /* MQTTSwift.swift */,
 				30367F771FDFAEBF0007678F /* Main.storyboard */,
 				30367F7A1FDFAEBF0007678F /* Assets.xcassets */,
 				30367F7C1FDFAEBF0007678F /* LaunchScreen.storyboard */,
 				30367F7F1FDFAEBF0007678F /* Info.plist */,
 				30367F801FDFAEBF0007678F /* main.m */,
+				304A03D31FDFB40900697078 /* PrefixHeader.pch */,
+				304A03CC1FDFB12A00697078 /* XLsn0wMQTT-Bridging-Header.h */,
 			);
 			path = XLsn0wMQTT;
 			sourceTree = "<group>";
@@ -129,6 +142,7 @@
 				TargetAttributes = {
 					30367F6D1FDFAEBF0007678F = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -229,8 +243,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30367F761FDFAEBF0007678F /* ViewController.m in Sources */,
+				304A03D01FDFB12B00697078 /* SwiftViewController.swift in Sources */,
+				304A03CB1FDFAFE600697078 /* ViewController.m in Sources */,
 				30367F811FDFAEBF0007678F /* main.m in Sources */,
+				304A03D21FDFB1AC00697078 /* MQTTSwift.swift in Sources */,
+				304A03CF1FDFB12B00697078 /* ChatViewController.swift in Sources */,
 				30367F731FDFAEBF0007678F /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,11 +383,16 @@
 			baseConfigurationReference = 83B005F7C3DCA528B881CA10 /* Pods-XLsn0wMQTT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PREFIX_HEADER = XLsn0wMQTT/PrefixHeader.pch;
 				INFOPLIST_FILE = XLsn0wMQTT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xlsn0w.XLsn0wMQTT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XLsn0wMQTT/XLsn0wMQTT-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -380,11 +402,15 @@
 			baseConfigurationReference = 85831FEBFDB5D6087E832EBD /* Pods-XLsn0wMQTT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PREFIX_HEADER = XLsn0wMQTT/PrefixHeader.pch;
 				INFOPLIST_FILE = XLsn0wMQTT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xlsn0w.XLsn0wMQTT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XLsn0wMQTT/XLsn0wMQTT-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

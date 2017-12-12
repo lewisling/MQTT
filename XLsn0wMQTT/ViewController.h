@@ -1,14 +1,18 @@
-//
-//  ViewController.h
-//  XLsn0wMQTT
-//
-//  Created by golong on 2017/12/12.
-//  Copyright © 2017年 XLsn0w. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+/*
+ * MQTTClient: imports
+ * MQTTSessionManager.h is optional
+ */
+#import <MQTTClient/MQTTClient.h>
+#import <MQTTClient/MQTTSessionManager.h>
+
+/*
+ * MQTTClient: using your main view controller as the MQTTSessionManagerDelegate
+ */
+@interface ViewController : UIViewController <MQTTSessionManagerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 
 @end
