@@ -13,7 +13,6 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import "MQTTSessionManager.h"
-
 #import "MQTTCoreDataPersistence.h"
 #import "MQTTLog.h"
 #import "ReconnectTimer.h"

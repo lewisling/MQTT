@@ -1,12 +1,11 @@
 
-
 #import "ViewController.h"
 
-#define kMQTTServerHost @"iot.eclipse.org"
-#define kTopic @"MQTTExample/Message"
-#import "MQTTSessionManager.h"
+#define kHost @""
+#define kPort @""
+#define kTopic @""
 
-@interface ViewController ()
+@interface ViewController () <MQTTSessionManagerDelegate>
 /*
  * MQTTClient: keep a strong reference to your MQTTSessionManager here
  */
@@ -67,20 +66,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSURL *bundleURL = [[NSBundle mainBundle] bundleURL];
-    NSURL *mqttPlistUrl = [bundleURL URLByAppendingPathComponent:@"mqtt.plist"];
+
+    NSURL *mqttPlistUrl = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"mqtt.plist"];
     self.mqttSettings = [NSDictionary dictionaryWithContentsOfURL:mqttPlistUrl];
     self.base = self.mqttSettings[@"base"];
-    
-    self.chat = [[NSMutableArray alloc] init];
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 150;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    self.message.delegate = self;
-    
     
     /*
      * MQTTClient: create an instance of MQTTSessionManager once and connect
