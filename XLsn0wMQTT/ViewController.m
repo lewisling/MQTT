@@ -142,6 +142,124 @@
 
 }
 
+
+/**
+ 发布订阅模式
+ 使得消息发布者和订阅者不需要了解对方，发布者和订阅者不需要交互， 发布者无需等待订阅者确认而导致锁定，这和我们iOS中的通知是有区别的，iOS中的通知是同步的。。
+ 
+ 主题
+ 订阅者像订阅通知一样订阅主题，发布者发布主题消息之后，MQTT代理就会将消息推送到相应的订阅者
+ 
+ 代理
+ 作为一个中继站的感觉~，管理连接，处理消息发布和订阅的具体事宜。
+ 
+ 服务质量（Quality of Service –QoS）
+ 0
+ “至多一次”，消息发布完全依赖底层 TCP/IP 网络。会发生消息丢失或重复。这一级别可用于如下情况，环境传感器数据，丢失一次读记录无所谓，因为不久后还会有第二次发送。
+ 至多发送一次，发送即丢弃。没有确认消息，也不知道对方是否收到。
+ 针对的消息不重要，丢失也无所谓。
+ 网络层面，传输压力小。
+ 
+ 1
+ “至少一次”，确保消息到达，但消息重复可能会发生。
+ 所有QoS level 1都要在可变头部中附加一个16位的消息ID。
+ SUBSCRIBE和UNSUBSCRIBE消息使用QoS level 1。
+ 针对消息的发布，Qos level 1，意味着消息至少被传输一次。
+ 发送者若在一段时间内接收不到PUBACK消息，发送者需要打开DUB标记为1，然后重新发送PUBLISH消息。因此会导致接收方可能会收到两次PUBLISH消息。针对客户端发布消息到服务器的消息处理流程：
+ 发布者（客户端/服务器）若因种种异常接收不到PUBACK消息，会再次重新发送PUBLISH消息，同时设置DUP标记为1。接收者以服务器为例，这可能会导致服务器收到重复消息，按照流程，broker（服务器）发布消息到订阅者（会导致订阅者接收到重复消息），然后发送一条PUBACK确认消息到发布者。
+ 　　在业务层面，或许可以弥补MQTT协议的不足之处：重试的消息ID一定要一致接收方一定判断当前接收的消息ID是否已经接受过，但一样不能够完全确保，消息一定到达了。
+
+ 2
+ “只有一次”，确保消息到达一次。这一级别可用于如下情况，在计费系统中，消息重复或丢失会导致不正确的结果。
+ 仅仅在PUBLISH类型消息中出现，要求在可变头部中要附加消息ID。
+ 　　级别高，通信压力稍大些，但确保了仅仅传输接收一次。
+ 　　先看协议中流程图，Client -> Server方向，会有一个总体印象：
+ Server端采取的方案a和b，都包含了何时消息有效，何时处理消息。两个方案二选一，Server端自己决定。但无论死采取哪一种方式，都是在QoS level 2协议范畴下，不受影响。若一方没有接收到对应的确认消息，会从最近一次需要确认的消息重试，以便整个（QoS level 2）流程打通。
+ 
+ 
+ 
+ 消息类型
+ MQTT协议下拥有14种不同的消息类型
+ 
+ MQTTConnect = 1,  //客户端连接到MQTT代理
+ MQTTConnack = 2, //连接确认的消息
+ MQTTPublish = 3, //新发布消息
+ MQTTPuback = 4, //新发布消息确认
+ MQTTPubrec = 5, //消息发布  已记录
+ MQTTPubrel = 6, //消息发布  已释放
+ MQTTPubcomp = 7,// 消息发布完成
+ MQTTSubscribe = 8,//订阅
+ MQTTSuback = 9, //订阅回执
+ MQTTUnsubscribe = 10,//取消订阅
+ MQTTUnsuback = 11,//取消订阅的回执吧
+ MQTTPingreq = 12, //心跳消息
+ MQTTPingresp = 13,//确认心跳
+ MQTTDisconnect = 14 //客户端终止连接
+ 
+ #import "MQTTClient.h"
+ 设置<MQTTSessionDelegate>
+ //初始化一个传输类型的实例
+ MQTTCFSocketTransport *transport = [[MQTTCFSocketTransport alloc] init];
+ transport.host = @"localhost";
+ transport.port = 1883;
+ //创建一个任务
+ MQTTSession *session = [[MQTTSession alloc] init];
+ //设置任务的传输类型
+ session.transport = transport;
+ //设置任务的代理为当前类
+ session.delegate = self;
+ //设置登录账号
+ session.clientId = @"clientId";
+ 
+ BOOL isSucess =   [session connectAndWaitTimeout:30];  //this is part of the synchronous API
+ if(isSucess){
+ 　//以下部分是订阅一个主题
+ [session subscribeToTopic:@"topic" atLevel:2 subscribeHandler:^(NSError *error, NSArray<NSNumber *> *gQoss){
+ 
+ if (error) {
+ 
+ NSLog(@"Subscription failed %@", error.localizedDescription);
+ 
+ } else {
+ 
+ NSLog(@"Subscription sucessfull! Granted Qos: %@", gQoss);
+ 
+ }
+ 
+ }];
+ }
+ 
+ //接收数据
+ - (void)newMessage:(MQTTSession *)session
+ data:(NSData *)data
+ onTopic:(NSString *)topic
+ qos:(MQTTQosLevel)qos
+ retained:(BOOL)retained
+ mid:(unsigned int)mid {
+ // this is one of the delegate callbacks
+ 
+ NSLog(@"%@",[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]);
+ 
+ }
+ //发送数据  this is part of the asynchronous API
+ [session publishAndWaitData:data
+ onTopic:@"topic"
+ retain:NO
+ qos:MQTTQosLevelAtLeastOnce];
+ //主动和服务端断开
+ [session disconnect];
+ 
+ //取消订阅主题
+ [session unsubscribeTopic:@"topic" unsubscribeHandler:^(NSError *error) {
+ 
+ }];
+ 
+ 作者：mark666
+ 链接：http://www.jianshu.com/p/bcf0251dc181
+ 來源：简书
+ 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+ 
+ */
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -350,33 +468,10 @@
     [self.tableView reloadData];
 }
 
-/*
- * UITableViewDelegate
- */
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"line"];
-
-    return cell;
-}
-
-/*
- * UITableViewDataSource
- */
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.chat.count;
+- (void)connectionClosed:(MQTTSession *)session{
+    NSLog(@"========哈哈哈哈我断了");
+    //这里实现断开重连
+    [session connect];
 }
 
 @end
