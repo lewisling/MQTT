@@ -80,9 +80,9 @@
         self.manager.delegate = self;
         self.manager.subscriptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:2]
                                                                  forKey:[NSString stringWithFormat:@"%@/#", self.base]];
-        [self.manager connectTo:self.mqttSettings[@"host"]
-                           port:[self.mqttSettings[@"port"] intValue]
-                            tls:[self.mqttSettings[@"tls"] boolValue]
+        [self.manager connectTo:@"192.168.1.100"
+                           port:80
+                            tls:true
                       keepalive:60
                           clean:true
                            auth:false
@@ -103,7 +103,6 @@
     /*
      * MQTTCLient: observe the MQTTSessionManager's state to display the connection status
      */
-    
     [self.manager addObserver:self
                    forKeyPath:@"state"
                       options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
