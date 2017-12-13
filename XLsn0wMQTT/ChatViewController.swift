@@ -2,7 +2,6 @@
 import UIKit
 import CocoaMQTT
 
-
 class ChatViewController: UIViewController {
     var animal: String? {
         didSet {
@@ -21,6 +20,7 @@ class ChatViewController: UIViewController {
             }
         }
     }
+    
     var mqtt: CocoaMQTT?
 //    var messages: [ChatMessage] = [] {
 //        didSet {

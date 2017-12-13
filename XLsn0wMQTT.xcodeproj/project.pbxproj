@@ -12,7 +12,7 @@
 		30367F7B1FDFAEBF0007678F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30367F7A1FDFAEBF0007678F /* Assets.xcassets */; };
 		30367F7E1FDFAEBF0007678F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30367F7C1FDFAEBF0007678F /* LaunchScreen.storyboard */; };
 		30367F811FDFAEBF0007678F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30367F801FDFAEBF0007678F /* main.m */; };
-		304A03CB1FDFAFE600697078 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CA1FDFAFE600697078 /* ViewController.m */; };
+		304A03CB1FDFAFE600697078 /* MQTTClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CA1FDFAFE600697078 /* MQTTClientViewController.m */; };
 		304A03CF1FDFB12B00697078 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CD1FDFB12A00697078 /* ChatViewController.swift */; };
 		304A03D01FDFB12B00697078 /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A03CE1FDFB12B00697078 /* SwiftViewController.swift */; };
 		55B54A714922AF8C891E8E66 /* Pods_XLsn0wMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AF042C5015C17AF5D7DC13 /* Pods_XLsn0wMQTT.framework */; };
@@ -27,8 +27,8 @@
 		30367F7D1FDFAEBF0007678F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30367F7F1FDFAEBF0007678F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30367F801FDFAEBF0007678F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		304A03C91FDFAFE600697078 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		304A03CA1FDFAFE600697078 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		304A03C91FDFAFE600697078 /* MQTTClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQTTClientViewController.h; sourceTree = "<group>"; };
+		304A03CA1FDFAFE600697078 /* MQTTClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQTTClientViewController.m; sourceTree = "<group>"; };
 		304A03CC1FDFB12A00697078 /* XLsn0wMQTT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XLsn0wMQTT-Bridging-Header.h"; sourceTree = "<group>"; };
 		304A03CD1FDFB12A00697078 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		304A03CE1FDFB12B00697078 /* SwiftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftViewController.swift; sourceTree = "<group>"; };
@@ -75,10 +75,8 @@
 				309F18BF1FDFD02E00582E44 /* XLsn0wMQTT.entitlements */,
 				30367F711FDFAEBF0007678F /* AppDelegate.h */,
 				30367F721FDFAEBF0007678F /* AppDelegate.m */,
-				304A03C91FDFAFE600697078 /* ViewController.h */,
-				304A03CA1FDFAFE600697078 /* ViewController.m */,
-				304A03CD1FDFB12A00697078 /* ChatViewController.swift */,
-				304A03CE1FDFB12B00697078 /* SwiftViewController.swift */,
+				304A03C91FDFAFE600697078 /* MQTTClientViewController.h */,
+				304A03CA1FDFAFE600697078 /* MQTTClientViewController.m */,
 				30367F771FDFAEBF0007678F /* Main.storyboard */,
 				30367F7A1FDFAEBF0007678F /* Assets.xcassets */,
 				30367F7C1FDFAEBF0007678F /* LaunchScreen.storyboard */,
@@ -86,6 +84,8 @@
 				30367F801FDFAEBF0007678F /* main.m */,
 				304A03D31FDFB40900697078 /* PrefixHeader.pch */,
 				304A03CC1FDFB12A00697078 /* XLsn0wMQTT-Bridging-Header.h */,
+				304A03CD1FDFB12A00697078 /* ChatViewController.swift */,
+				304A03CE1FDFB12B00697078 /* SwiftViewController.swift */,
 			);
 			path = XLsn0wMQTT;
 			sourceTree = "<group>";
@@ -248,7 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				304A03D01FDFB12B00697078 /* SwiftViewController.swift in Sources */,
-				304A03CB1FDFAFE600697078 /* ViewController.m in Sources */,
+				304A03CB1FDFAFE600697078 /* MQTTClientViewController.m in Sources */,
 				30367F811FDFAEBF0007678F /* main.m in Sources */,
 				304A03CF1FDFB12B00697078 /* ChatViewController.swift in Sources */,
 				30367F731FDFAEBF0007678F /* AppDelegate.m in Sources */,
