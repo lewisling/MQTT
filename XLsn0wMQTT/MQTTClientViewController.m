@@ -11,16 +11,6 @@
  */
 @property (strong, nonatomic) MQTTSessionManager *manager;
 
-
-@property (strong, nonatomic) NSDictionary *mqttSettings;
-@property (strong, nonatomic) NSMutableArray *chat;
-@property (weak, nonatomic) IBOutlet UILabel *status;
-@property (weak, nonatomic) IBOutlet UITextField *message;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSString *base;
-@property (weak, nonatomic) IBOutlet UIButton *connect;
-@property (weak, nonatomic) IBOutlet UIButton *disconnect;
-
 @end
 
 @implementation MQTTClientViewController
@@ -98,22 +88,19 @@
         self.manager.subscriptions = @{@"topic" : @2};
         
         /// connect to IP
-        [self.manager connectTo:@"192.168.1.100"
-                           port:80
-                            tls:true
-                      keepalive:60
-                          clean:true
-                           auth:false
-                           user:nil
-                           pass:nil
-                      willTopic:[NSString stringWithFormat:@"%@/%@-%@",
-                                 self.base,
-                                 [UIDevice currentDevice].name,
-                                 self.tabBarItem.title]
-                           will:[@"offline" dataUsingEncoding:NSUTF8StringEncoding]
-                        willQos:2
-                 willRetainFlag:FALSE
-                   withClientId:nil];
+        [self.manager connectTo: @"192.168.1.100"
+                           port: 80
+                            tls: true
+                      keepalive: 60
+                          clean: true
+                           auth: false
+                           user: nil
+                           pass: nil
+                      willTopic: @""
+                           will: [@"offline" dataUsingEncoding:NSUTF8StringEncoding]
+                        willQos: 2
+                 willRetainFlag: FALSE
+                   withClientId: nil];
     } else {
         [self.manager connectToLast];
     }
@@ -249,45 +236,29 @@
                        context:(void *)context {
     switch (self.manager.state) {
         case MQTTSessionManagerStateClosed:
-            self.status.text = @"closed";
-            self.disconnect.enabled = false;
-            self.connect.enabled = false;
+            // 关闭
             break;
+            
         case MQTTSessionManagerStateClosing:
-            self.status.text = @"closing";
-            self.disconnect.enabled = false;
-            self.connect.enabled = false;
+            // 正在关闭
             break;
+            
         case MQTTSessionManagerStateConnected:
-            self.status.text = [NSString stringWithFormat:@"connected as %@-%@",
-                                [UIDevice currentDevice].name,
-                                self.tabBarItem.title];
-            self.disconnect.enabled = true;
-            self.connect.enabled = false;
-            [self.manager sendData:[@"joins chat" dataUsingEncoding:NSUTF8StringEncoding]
-                             topic:[NSString stringWithFormat:@"%@/%@-%@",
-                                    self.base,
-                                    [UIDevice currentDevice].name,
-                                    self.tabBarItem.title]
-                               qos:MQTTQosLevelExactlyOnce
-                            retain:FALSE];
-
+            // 已经连接
             break;
+            
         case MQTTSessionManagerStateConnecting:
-            self.status.text = @"connecting";
-            self.disconnect.enabled = false;
-            self.connect.enabled = false;
+            // 正在连接
             break;
+            
         case MQTTSessionManagerStateError:
-            self.status.text = @"error";
-            self.disconnect.enabled = false;
-            self.connect.enabled = false;
+            // 连接错误
             break;
+            
         case MQTTSessionManagerStateStarting:
+            break;
+            
         default:
-            self.status.text = @"not connected";
-            self.disconnect.enabled = false;
-            self.connect.enabled = true;
             break;
     }///mqtt协议本身支持断线重连，另外单独说明此sdk在app退出到后台后自动断开连接，当回到前台时会自动重新连接 ! ! !
 }
@@ -420,18 +391,14 @@
  
 
  */
+/*
+ * MQTTClient: send data to broker
+ */
 - (void)send:(id)sender {
-    /*
-     * MQTTClient: send data to broker
-     */
-    
-    [self.manager sendData:[self.message.text dataUsingEncoding:NSUTF8StringEncoding]
-                     topic:[NSString stringWithFormat:@"%@/%@-%@",
-                            self.base,
-                            [UIDevice currentDevice].name,
-                            self.tabBarItem.title]
+    [self.manager sendData:[@"传送字符串" dataUsingEncoding:NSUTF8StringEncoding]
+                     topic:@"订阅主题"
                        qos:MQTTQosLevelExactlyOnce
-                    retain:FALSE];
+                    retain:false];
 }
 
 /*
@@ -442,11 +409,8 @@
      * MQTTClient: process received message
      */
     
-    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *senderString = [topic substringFromIndex:self.base.length + 1];
-    
-    [self.chat insertObject:[NSString stringWithFormat:@"%@:\n%@", senderString, dataString] atIndex:0];
-    [self.tableView reloadData];
+    NSString *dataToString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    /// 收到服务器发来的数据 转成字符串
 }
 
 - (void)connectionClosed:(MQTTSession *)session{
