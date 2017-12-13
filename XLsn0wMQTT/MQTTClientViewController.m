@@ -5,7 +5,7 @@
 #define kPort @""
 #define kTopic @""
 
-@interface MQTTClientViewController () <MQTTSessionManagerDelegate>
+@interface MQTTClientViewController () <MQTTSessionManagerDelegate, MQTTSessionDelegate>
 /*
  * MQTTClient: keep a strong reference to your MQTTSessionManager here
  */
@@ -413,6 +413,10 @@
     /// 收到服务器发来的数据 转成字符串
 }
 
+#pragma mark - MQTTSessionDelegate
+/**
+ MQTTSessionDelegate
+ */
 - (void)connectionClosed:(MQTTSession *)session{
     NSLog(@"========哈哈哈哈我断了");
     //这里实现断开重连

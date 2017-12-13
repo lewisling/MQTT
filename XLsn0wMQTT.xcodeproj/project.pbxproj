@@ -84,8 +84,8 @@
 				30367F801FDFAEBF0007678F /* main.m */,
 				304A03D31FDFB40900697078 /* PrefixHeader.pch */,
 				304A03CC1FDFB12A00697078 /* XLsn0wMQTT-Bridging-Header.h */,
-				304A03CD1FDFB12A00697078 /* ChatViewController.swift */,
 				304A03CE1FDFB12B00697078 /* SwiftViewController.swift */,
+				304A03CD1FDFB12A00697078 /* ChatViewController.swift */,
 			);
 			path = XLsn0wMQTT;
 			sourceTree = "<group>";

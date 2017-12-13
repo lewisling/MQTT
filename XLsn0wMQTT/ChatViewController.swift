@@ -22,12 +22,6 @@ class ChatViewController: UIViewController {
     }
     
     var mqtt: CocoaMQTT?
-//    var messages: [ChatMessage] = [] {
-//        didSet {
-//            tableView.reloadData()
-//            scrollToBottom()
-//        }
-//    }
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextView: UITextView! {
@@ -58,6 +52,7 @@ class ChatViewController: UIViewController {
         messageTextViewHeightConstraint.constant = messageTextView.contentSize.height
         messageTextView.layoutIfNeeded()
         view.endEditing(true)
+        
     }
     @IBAction func disconnect() {
         mqtt!.disconnect()
