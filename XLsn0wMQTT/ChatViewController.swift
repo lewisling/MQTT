@@ -63,7 +63,7 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         animal = tabBarController?.selectedViewController?.tabBarItem.title
-        automaticallyAdjustsScrollViewInsets = false
+//        automaticallyAdjustsScrollViewInsets = false
         messageTextView.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -103,7 +103,6 @@ class ChatViewController: UIViewController {
     }
     
     func scrollToBottom() {
-
         
     }
 }

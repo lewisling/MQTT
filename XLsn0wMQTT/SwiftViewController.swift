@@ -2,8 +2,8 @@
 import UIKit
 import CocoaMQTT
 
-
 class SwiftViewController: UIViewController {
+    
     var mqtt: CocoaMQTT?
     var animal: String?
     

@@ -15,11 +15,13 @@
 
 @implementation MQTTClientViewController
 
-
 /**
  1、 什么是MQTT?
  
- MQTT（MessageQueueing Telemetry Transport Protocol）的全称是消息队列遥感传输协议的缩写，是由IBM公司推出的一种基于轻量级代理的发布/订阅模式的消息传输协议，运行在TCP协议栈之上，为其提供有序、可靠、双向连接的网络连接保证。由于其开放、简单和易于实现所以能够应用在资源受限的环境中，对于M2M和物联网应用程序来说是一个相当不错的选择。
+ MQTT（MessageQueueing Telemetry Transport Protocol）消息队列遥感传输协议
+ 
+ 是由IBM公司推出的一种基于轻量级代理的发布/订阅模式的消息传输协议，运行在TCP协议栈之上，为其提供有序、可靠、双向连接的网络连接保证。
+ 由于其开放、简单和易于实现所以能够应用在资源受限的环境中，对于M2M和物联网应用程序来说是一个相当不错的选择。
  
  2、 为什么要用MQTT？
  
