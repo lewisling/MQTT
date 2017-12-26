@@ -30,18 +30,30 @@
         
         /// connect to IP
         [self.sessionManager connectTo:@"192.168.1.4" //服务器地址
-                           port:1883 //服务端端口号
-                            tls:true //是否使用tls协议，mosca是支持tls的，如果使用了要设置成true
-                      keepalive:60 //心跳时间，单位秒，每隔固定时间发送心跳包
-                          clean:false //session是否清除，这个需要注意，如果是false，代表保持登录，如果客户端离线了再次登录就可以接收到离线消息。注意：QoS为1和QoS为2，并需订阅和发送一致
-                           auth:true //是否使用登录验证，和下面的user和pass参数组合使用
-                           user:@"userName" //用户名
-                           pass:@"password" //密码
-                      willTopic:@"" //下面四个参数用来设置如果客户端异常离线发送的消息，当前参数是哪个topic用来传输异常离线消息，这里的异常离线消息都指的是客户端掉线后发送的掉线消息
-                           will:@"" //异常离线消息体。自定义的异常离线消息，约定好格式就可以了
-                        willQos:0 //接收离线消息的级别 0、1、2
-                 willRetainFlag:false //只有在为true时，Will Qos和Will Retain才会被读取，此时消息体payload中要出现Will Topic和Will Message具体内容，否则，Will QoS和Will Retain值会被忽略掉
-                   withClientId:nil]; //客户端id，需要特别指出的是这个id需要全局唯一，因为服务端是根据这个来区分不同的客户端的，默认情况下一个id登录后，假如有另外的连接以这个id登录，上一个连接会被踢下线
+         
+                                  port:1883 //服务端端口号
+         
+                                   tls:true //是否使用tls协议，mosca是支持tls的，如果使用了要设置成true
+         
+                             keepalive:60 //心跳时间，单位秒，每隔固定时间发送心跳包
+         
+                                 clean:false //session是否清除，这个需要注意，如果是false，代表保持登录，如果客户端离线了再次登录就可以接收到离线消息。注意：QoS为1和QoS为2，并需订阅和发送一致
+         
+                                  auth:true //是否使用登录验证，和下面的user和pass参数组合使用
+         
+                                  user:@"userName" //用户名
+         
+                                  pass:@"password" //密码
+         
+                             willTopic:@"" //下面四个参数用来设置如果客户端异常离线发送的消息，当前参数是哪个topic用来传输异常离线消息，这里的异常离线消息都指的是客户端掉线后发送的掉线消息
+         
+                                  will:@"" //异常离线消息体。自定义的异常离线消息，约定好格式就可以了
+         
+                               willQos:0 //接收离线消息的级别 0、1、2
+         
+                        willRetainFlag:false //只有在为true时，Will Qos和Will Retain才会被读取，此时消息体payload中要出现Will Topic和Will Message具体内容，否则，Will QoS和Will Retain值会被忽略掉
+         
+                          withClientId:nil]; //客户端id，需要特别指出的是这个id需要全局唯一，因为服务端是根据这个来区分不同的客户端的，默认情况下一个id登录后，假如有另外的连接以这个id登录，上一个连接会被踢下线
     } else {
         [self.sessionManager connectToLast];
     }
