@@ -33,6 +33,7 @@
 #import "MQTTSessionLegacy.h"
 #import "MQTTSessionSynchron.h"
 #import "MQTTTransport.h"
+#import "Timer.h"
 
 FOUNDATION_EXPORT double MQTTClientVersionNumber;
 FOUNDATION_EXPORT const unsigned char MQTTClientVersionString[];

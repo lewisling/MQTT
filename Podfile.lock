@@ -5,14 +5,14 @@ PODS:
   - CocoaMQTT (1.0.19):
     - CocoaAsyncSocket (~> 7.5.1)
     - SwiftyTimer (~> 2.0.0)
-  - MQTTClient (0.9.9):
-    - MQTTClient/Core (= 0.9.9)
-  - MQTTClient/Core (0.9.9):
+  - MQTTClient (0.10.0):
+    - MQTTClient/Core (= 0.10.0)
+  - MQTTClient/Core (0.10.0):
     - MQTTClient/Manager
     - MQTTClient/Min
-  - MQTTClient/Manager (0.9.9):
+  - MQTTClient/Manager (0.10.0):
     - MQTTClient/Min
-  - MQTTClient/Min (0.9.9)
+  - MQTTClient/Min (0.10.0)
   - SwiftyTimer (2.0.0)
 
 DEPENDENCIES:
@@ -22,7 +22,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   CocoaAsyncSocket: e0a7e93b2ffa411592ff87e58524fbbc9b95b4fa
   CocoaMQTT: 014fd1f0793d376b207073ebb5b92a0c8bf8eb2e
-  MQTTClient: 5a59e0ebcad95f86ad8fc04dd4b819a944e58e0c
+  MQTTClient: f90f4bf4437300b176405e41ad2a162ef28f618a
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
 PODFILE CHECKSUM: 8cc7d474ce22880e59cdfc72b3c52cee484b2bea

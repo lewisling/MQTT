@@ -1,15 +1,15 @@
 
 #import "MQTTClientViewController.h"
 
-#define kHost @""
-#define kPort @""
-#define kTopic @""
+#define kHost @""///网址IP
+#define kPort @""//端口port
+#define kTopic @""//主题
 
 @interface MQTTClientViewController () <MQTTSessionManagerDelegate, MQTTSessionDelegate>
 /*
  * MQTTClient: keep a strong reference to your MQTTSessionManager here
  */
-@property (strong, nonatomic) MQTTSessionManager *manager;
+@property (strong, nonatomic) MQTTSessionManager *sessionManager;
 
 @end
 
@@ -84,13 +84,13 @@
      * MQTTClient: create an instance of MQTTSessionManager once and connect
      * will is set to let the x x xbroker indicate to other subscribers if the connection is lost
      */
-    if (!self.manager) {
-        self.manager = [[MQTTSessionManager alloc] init];//new
-        self.manager.delegate = self;//delegate
-        self.manager.subscriptions = @{@"topic" : @2};
+    if (!self.sessionManager) {
+        self.sessionManager = [[MQTTSessionManager alloc] init];//new
+        self.sessionManager.delegate = self;//delegate
+        self.sessionManager.subscriptions = @{@"topic" : @2};
         
         /// connect to IP
-        [self.manager connectTo: @"192.168.1.100"
+        [self.sessionManager connectTo: @"192.168.1.100"
                            port: 80
                             tls: true
                       keepalive: 60
@@ -104,14 +104,14 @@
                  willRetainFlag: FALSE
                    withClientId: nil];
     } else {
-        [self.manager connectToLast];
+        [self.sessionManager connectToLast];
     }
     
     /*
      * MQTTCLient: observe the MQTTSessionManager's state to display the connection status
      * add Observer
      */
-    [self.manager addObserver:self
+    [self.sessionManager addObserver:self
                    forKeyPath:@"state"
                       options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
                       context:nil];
@@ -230,13 +230,12 @@
  
  }];
 
- 
  *///观察者模式监听状态
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    switch (self.manager.state) {
+    switch (self.sessionManager.state) {
         case MQTTSessionManagerStateClosed:
             // 关闭
             break;
@@ -265,33 +264,26 @@
     }///mqtt协议本身支持断线重连，另外单独说明此sdk在app退出到后台后自动断开连接，当回到前台时会自动重新连接 ! ! !
 }
 
-- (void)connect:(id)sender {
-    /*
-     * MQTTClient: connect to same broker again
-     */
-    [self.manager connectToLast];
-}
-
 - (void)disconnect:(id)sender {
     /*
      * MQTTClient: send goodby message and gracefully disconnect
      */
     //发送消息,返回值msgid大于0代表发送成功
-    [self.manager sendData:[@"leaves chat" dataUsingEncoding:NSUTF8StringEncoding]
+    [self.sessionManager sendData:[@"leaves chat" dataUsingEncoding:NSUTF8StringEncoding]
                      topic:@"要往哪个topic发送消息"
                        qos:2
                     retain:FALSE];
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-    [self.manager disconnect];
+    [self.sessionManager disconnect];
     
     
     //订阅主题。NSDictionary类型，，key 为 Topic vaule 为 QoS
     //self.manager.subscriptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:MQTTQosLevelExactlyOnce] forKey:@"topic"];
     
-    self.manager.subscriptions = @{ @"topic" : @2 };
+    self.sessionManager.subscriptions = @{ @"topic" : @2 };
     
     //发送消息,返回值msgid大于0代表发送成功
-    UInt16 msgid = [self.manager sendData:[@"msg" dataUsingEncoding:NSUTF8StringEncoding] //要发送的消息体
+    UInt16 msgid = [self.sessionManager sendData:[@"msg" dataUsingEncoding:NSUTF8StringEncoding] //要发送的消息体
                                       topic:@"topic" //要往哪个topic发送消息
                                         qos:MQTTQosLevelExactlyOnce //消息级别
                                      retain:false];
@@ -397,32 +389,22 @@
  * MQTTClient: send data to broker
  */
 - (void)send:(id)sender {
-    [self.manager sendData:[@"传送字符串" dataUsingEncoding:NSUTF8StringEncoding]
+    [self.sessionManager sendData:[@"传送字符串" dataUsingEncoding:NSUTF8StringEncoding]
                      topic:@"订阅主题"
                        qos:MQTTQosLevelExactlyOnce
                     retain:false];
 }
 
-/*
- * MQTTSessionManagerDelegate
- */
+#pragma mark - MQTTSessionManagerDelegate
+
 - (void)handleMessage:(NSData *)data onTopic:(NSString *)topic retained:(BOOL)retained {
-    /*
-     * MQTTClient: process received message
-     */
-    
-    NSString *dataToString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    /// 收到服务器发来的数据 转成字符串
+    NSString *dataToString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];/// 收到服务器发来的数据 转成字符串
 }
 
 #pragma mark - MQTTSessionDelegate
-/**
- MQTTSessionDelegate
- */
-- (void)connectionClosed:(MQTTSession *)session{
-    NSLog(@"========哈哈哈哈我断了");
-    //这里实现断开重连
-    [session connect];
+
+- (void)connectionClosed:(MQTTSession *)session {
+    [session connect];///重连
 }
 
 @end
