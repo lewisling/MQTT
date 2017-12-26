@@ -173,8 +173,7 @@
                        qos:2
                     retain:FALSE];
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-    [self.sessionManager disconnect];
-    
+    [self.sessionManager disconnect];// 断开连接
     
     //订阅主题。NSDictionary类型，，key 为 Topic vaule 为 QoS
     //self.manager.subscriptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:MQTTQosLevelExactlyOnce] forKey:@"topic"];
