@@ -2,7 +2,7 @@
 //  AppDelegate.h
 //  XLsn0wMQTT
 //
-//  Created by golong on 2017/12/12.
+//  Created by XLsn0w on 2017/12/12.
 //  Copyright © 2017年 XLsn0w. All rights reserved.
 //
 
