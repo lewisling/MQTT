@@ -24,7 +24,7 @@
      * will is set to let the x x xbroker indicate to other subscribers if the connection is lost
      */
     if (!self.sessionManager) {
-        self.sessionManager = [[MQTTSessionManager alloc] init];//new
+        self.sessionManager = [[MQTTSessionManager alloc] init];//init
         self.sessionManager.delegate = self;//delegate
         self.sessionManager.subscriptions = @{@"topic" : @2};
         
